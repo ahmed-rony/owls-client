@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
+import Paper from '@mui/material/Paper';
+import { GiOwl } from 'react-icons/gi';
 
 const Login = () => {
   const [ inputs , setInputs ] = useState({
@@ -9,19 +11,21 @@ const Login = () => {
     password: ""
   });
   const [err, setErr] = useState(null);
+  const { login } = useContext(AuthContext);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleChange = (e) =>{
     setInputs(prev =>({...prev, [e.target.name]: e.target.value}));
   }
 
-  const { login } = useContext(AuthContext);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await login(inputs);
-      navigate("/");
+      navigate(from, { replace: true });
       
     } catch (error) {
       setErr(error.response.data);
@@ -30,9 +34,9 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="card">
+      <Paper elevation={3} className="card">
         <div className="left">
-          <h1>Hello World.</h1>
+          <h1>Hey Owls<GiOwl /></h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
             alias totam numquam ipsa exercitationem dignissimos, error nam,
@@ -52,7 +56,7 @@ const Login = () => {
             <button onClick={handleLogin}>Login</button>
           </form>
         </div>
-      </div>
+      </Paper>
     </div>
   );
 };

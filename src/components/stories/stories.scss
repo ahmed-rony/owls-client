@@ -3,18 +3,12 @@
 .stories {
   display: flex;
   gap: 10px;
-  height: 250px;
+  height: 200px;
   margin-bottom: 30px;
 
-  @include mobile {
-    height: 50px;
-    margin-bottom: 0;
-    justify-content: space-between;
-  }
-
-  @include tablet{
+  @include tablet {
     height: 150px;
-    gap: 20px;
+    gap: 10px;
   }
 
   .story {
@@ -23,11 +17,18 @@
     overflow: hidden;
     position: relative;
 
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(2, 0, 36, 0) 30%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
     @include mobile {
-      flex: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+      height: 150px;
     }
 
     img {
@@ -35,13 +36,18 @@
       height: 100%;
       object-fit: cover;
     }
+
     span {
       position: absolute;
       bottom: 10px;
       left: 10px;
       color: white;
       font-weight: 500;
+      font-size: 15px;
+      z-index: 1;
+
       @include mobile {
+        font-size: 13px;
         display: none;
       }
     }
@@ -54,20 +60,23 @@
       background-color: #5271ff;
       border: none;
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      width: 25px;
+      height: 25px;
       cursor: pointer;
-      font-size: 30px;
+      font-size: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
 
       @include mobile {
-       left: 0;
-       right: 0;
-       top: 0;
-       bottom: 0;
-       margin: auto;
+        width: 20px;
+        height: 20px;
+        font-size: 15px;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        margin: auto;
       }
     }
   }

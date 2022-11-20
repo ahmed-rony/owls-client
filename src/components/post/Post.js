@@ -1,8 +1,4 @@
 import "./post.scss";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
@@ -11,6 +7,11 @@ import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../../context/authContext";
+import { BiComment } from 'react-icons/bi';
+import { FiShare2 } from 'react-icons/fi';
+import { Checkbox } from "@mui/material";
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
@@ -62,7 +63,7 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={post.profilePic} alt="" />
+            <img src={'./upload/'+post.profilePic} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${post.userId}`}
@@ -70,10 +71,10 @@ const Post = ({ post }) => {
               >
                 <span className="name">{post.name}</span>
               </Link>
-              <span className="date">{moment(post.createDate).fromNow()}</span>
+              <small className="date">{moment(post.createDate).fromNow()}</small>
             </div>
           </div>
-          <MoreHorizIcon onClick={()=> setMenuOpen(!menuOpen)} />
+          <MoreHorizIcon className='more-icon' onClick={()=> setMenuOpen(!menuOpen)} />
           {(menuOpen && post.userId === currentUser.id) && <button onClick={handleDelete}>Delete</button>}
         </div>
         <div className="content">
@@ -84,15 +85,18 @@ const Post = ({ post }) => {
           <div className="item">
             {isLoading 
             ? 'Loading..'
-            : data.includes(currentUser.id) ? <FavoriteOutlinedIcon onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
+            // : data.includes(currentUser.id) ? <FavoriteOutlinedIcon onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
+            : data.includes(currentUser.id) ? <Checkbox onClick={handleLike} icon={<FavoriteBorder />} checkedIcon={<Favorite />} /> : <Checkbox onClick={handleLike} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />}
             {/* {data.length} Likes */}
+            {/* <Checkbox {...label} icon={<FavoriteBorder />} />
+            <Checkbox checkedIcon={<Favorite />} /> */}
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            <TextsmsOutlinedIcon />
+            <BiComment className="icon" />
             12 Comments
           </div>
           <div className="item">
-            <ShareOutlinedIcon />
+            <FiShare2 className="icon" />
             Share
           </div>
         </div>

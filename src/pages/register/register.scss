@@ -1,6 +1,6 @@
 .register {
   height: 100vh;
-  background-color: rgb(193, 190, 255);
+  background-color: #dbecff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,7 @@
     flex-direction: row-reverse;
     background-color: white;
     border-radius: 10px;
-    min-height: 600px;
+    height: 450px;
     overflow: hidden;
 
     .left {
@@ -20,15 +20,15 @@
         url("https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600")
           center;
       background-size: cover;
-      padding: 50px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       gap: 30px;
       color: white;
 
       h1 {
-        font-size: 100px;
-        line-height: 100px;
+        font-size: 60px;
+        line-height: 60px;
       }
       
       p {
@@ -51,10 +51,10 @@
 
     .right {
       flex: 1;
-      padding: 50px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 10px;
       justify-content: center;
 
       h1 {
@@ -64,7 +64,7 @@
       form {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 10px;
         
         input {
         border: none;
@@ -80,6 +80,7 @@
           color: white;
           font-weight: bold;
           cursor: pointer;
+          margin-top: 10px;
         }
       }
     }

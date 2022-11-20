@@ -5,30 +5,47 @@
     -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    border-radius: 20px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
     background-color: themed("bg");
     color: themed("textColor");
     margin-bottom: 20px;
 
     .container {
       padding: 20px;
+      @include mobile {
+        padding: 20px 20px 10px;
+      }
+
       .top {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .left{
+
+        .left {
           display: flex;
           align-items: center;
           gap: 20px;
           width: 100%;
-          
+          @include mobile {
+            gap: 10px;
+          }
+
           img {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             object-fit: cover;
+
+            @include mobile {
+              width: 30px;
+              height: 30px;
+            }
           }
-  
+
           input {
             border: none;
             outline: none;
@@ -38,9 +55,12 @@
             color: themed("textColor");
           }
         }
-        .right{
 
-          .file{
+        .right {
+          display: flex;
+          align-items: center;
+
+          .file {
             width: 100px;
             object-fit: cover;
             border-radius: 3px;
@@ -48,25 +68,38 @@
             -moz-border-radius: 3px;
             -ms-border-radius: 3px;
             -o-border-radius: 3px;
-}
+
+            @include mobile {
+              width: 60px;
+            }
+          }
         }
       }
 
       hr {
-        margin: 20px 0px;
+        margin: 10px 0px;
         border: none;
         height: 0.5px;
         background-color: themed("border");
+
+        @include mobile {
+          margin: 5px 0 10px;
+        }
       }
 
       .bottom {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .left {
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 40px;
+
+          @include mobile {
+            gap: 15px;
+          }
 
           .item {
             display: flex;
@@ -81,17 +114,23 @@
             span {
               font-size: 12px;
               color: gray;
+
+              @include mobile {
+                display: none;
+              }
             }
           }
         }
+
         .right {
           button {
             border: none;
-            padding: 5px;
+            padding: 5px 10px;
             color: white;
             cursor: pointer;
-            background-color: #5271ff;
+            background-color: #3a5cf8;
             border-radius: 3px;
+            font-weight: 500;
           }
         }
       }

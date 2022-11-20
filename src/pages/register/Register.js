@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./register.scss";
 
@@ -12,6 +12,11 @@ const Register = () => {
   });
   const [err, setErr] = useState(null);
 
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
   const handleChange = (e) =>{
     setInputs(prev =>({...prev, [e.target.name]: e.target.value}));
   }
@@ -20,7 +25,8 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:30000/api/auths/register", inputs)
+      await axios.post("http://localhost:30000/api/auths/register", inputs);
+      navigate(from, { replace: true });
     } catch (error) {
       setErr(error.response.data);
     }
@@ -30,11 +36,10 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Lama Social.</h1>
+          <h1>Hey there!</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+            alias totam numquam ipsa exercitationem dignissimos.
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">

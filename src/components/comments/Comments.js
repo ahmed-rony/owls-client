@@ -11,7 +11,7 @@ const Comments = ({ postId }) => {
 
   const { isLoading, error, data } = useQuery(['comments'], () =>
     makeRequest.get("/comments?postId=" + postId).then((res) => {
-      return res.data
+      return res.data;
     })
   );
 
@@ -36,7 +36,7 @@ const Comments = ({ postId }) => {
   return (
     <div className="comments">
       <div className="write">
-        <img src={currentUser.profilePic} alt="" />
+        <img src={"./upload/"+currentUser.profilePic} alt="" />
         <input type="text" placeholder="write a comment" onChange={e => setDesc(e.target.value)} value={desc} />
         <button onClick={handleComment}>Send</button>
       </div>
@@ -44,10 +44,13 @@ const Comments = ({ postId }) => {
         ? 'Loading..'
         : data.map((comment) => (
           <div className="comment" key={comment.id}>
-            <img src={comment.profilePic} alt="" />
             <div className="info">
-              <span>{comment.name}</span>
-              <p>{comment.desc}</p>
+                <img src={"/upload/"+comment.profilePic} alt="" />
+              <div className="user">
+                <span>{comment.name}</span>
+                <p>{comment.desc}</p>
+              </div>
+
             </div>
             <span className="date">{moment(comment.createDate).fromNow()}</span>
           </div>

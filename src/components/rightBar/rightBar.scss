@@ -4,15 +4,16 @@
   @include themify($themes) {
     flex: 3;
     position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
+    top: 60px;
+    height: calc(100vh - 60px);
     overflow: scroll;
     background-color: themed("bgSoft");
 
-    @include mobile{
+    @include mobile {
       display: none;
     }
-    @include tablet{
+
+    @include tablet {
       display: none;
     }
 
@@ -21,17 +22,20 @@
     }
 
     .container {
-      padding: 20px;
-
+      
       .item {
-        -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-        -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-        box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
         background-color: themed("bg");
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
 
         span {
+          font-size: 14px;
           color: gray;
         }
 
@@ -42,36 +46,74 @@
           margin: 20px 0px;
 
           .userInfo {
+            max-width: 75%;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             position: relative;
 
-            img {
-              width: 40px;
-              height: 40px;
+            img{
+              width: 30px;
+              height: 30px;
               border-radius: 50%;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              -ms-border-radius: 50%;
+              -o-border-radius: 50%;
               object-fit: cover;
             }
 
             .online {
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
-              background-color: limegreen;
+              width: 8px;
+              height: 8px;
+              background-color: #1ef01e;
+              border: 2px solid themed("bg");
               position: absolute;
               top: 0;
-              left: 30px;
+              left: 23px;
+              border-radius: 50%;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              -ms-border-radius: 50%;
+              -o-border-radius: 50%;
             }
 
-            p {
-              color: themed("textColorSoft");
+            .notify{
+              width: 100%;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              .activities-img{
+                width: 37px;
+                height: 30px;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                object-fit: cover;
+              }
+              
+              p {
+                color: themed("textColorSoft");
+                font-size: 15px;
+                width: 100%;
+                word-wrap: break-word;
+                span{
+                  font-weight: 500;
+  
+                }
+              }
             }
 
             span {
               font-weight: 500;
               color: themed("textColor");
+              font-size: 16px;
             }
+          }
+          span{
+            font-size: 13px;
           }
 
           .buttons {
@@ -84,13 +126,15 @@
               padding: 5px;
               color: white;
               cursor: pointer;
+              font-weight: 500;
 
               &:first-child {
-                background-color: #5271ff;
+                background-color: #3a5cf8;
               }
 
               &:last-child {
-                background-color: #f0544f;
+                background-color: #fa4640;
+
               }
             }
           }

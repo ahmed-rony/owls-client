@@ -1,9 +1,4 @@
 import "./profile.scss";
-import FacebookTwoToneIcon from "@mui/icons-material/FacebookTwoTone";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -15,6 +10,8 @@ import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useState } from "react";
 import Update from "../../components/Update/Update";
+import { BsFacebook, BsInstagram, BsTwitter, BsLinkedin, BsPinterest, BsGlobe2 } from 'react-icons/bs';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +34,6 @@ const Profile = () => {
     })
   );
 
-  // https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=600
   const queryClient = useQueryClient();
   // Mutations  =====  for post/ delete/ updates
   const mutation = useMutation({
@@ -55,7 +51,7 @@ const Profile = () => {
   const handleFollow = () =>{
     mutation.mutate(relationshipData.includes(currentUser.id))
   }
-
+  
   return (
     <div className="profile">
       { isLoading 
@@ -77,31 +73,31 @@ const Profile = () => {
           <div className="uInfo">
             <div className="left">
               <a href="http://facebook.com">
-                <FacebookTwoToneIcon fontSize="large" />
+                <BsFacebook />
               </a>
-              <a href="http://facebook.com">
-                <InstagramIcon fontSize="large" />
+              <a href="http://instagram.com">
+                <BsInstagram  />
               </a>
-              <a href="http://facebook.com">
-                <TwitterIcon fontSize="large" />
+              <a href="http://twitter.com">
+                <BsTwitter  />
               </a>
-              <a href="http://facebook.com">
-                <LinkedInIcon fontSize="large" />
+              <a href="http://linkedin.com">
+                <BsLinkedin  />
               </a>
-              <a href="http://facebook.com">
-                <PinterestIcon fontSize="large" />
+              <a href="http://pinterest.com">
+                <BsPinterest  />
               </a>
             </div>
             <div className="center">
               <span>{data.name}</span>
               <div className="info">
                 <div className="item">
-                  <PlaceIcon />
-                  <span>{data.city}</span>
+                  <FaMapMarkerAlt />
+                  <small>{data.city}</small>
                 </div>
                 <div className="item">
-                  <LanguageIcon />
-                  <span>{data.website}</span>
+                  <BsGlobe2 />
+                  <small>{data.website}</small>
                 </div>
               </div>
               {rsLoading ? "Loading.." :

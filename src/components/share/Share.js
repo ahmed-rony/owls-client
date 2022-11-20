@@ -6,6 +6,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { makeRequest } from "../../axios";
+import { BsImage } from 'react-icons/bs';
+import { ImPriceTag } from 'react-icons/im';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const Share = () => {
   const [file, setFile] = useState(null);
@@ -51,7 +54,7 @@ const Share = () => {
         <div className="top">
           <div className="left">
             <img
-              src={currentUser.profilePic}
+              src={"./upload/"+currentUser.profilePic}
               alt=""
             />
             <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} />
@@ -67,16 +70,16 @@ const Share = () => {
             <input type="file" id="file" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
             <label htmlFor="file">
               <div className="item">
-                <img src={Image} alt="" />
+                <BsImage/>
                 <span>Add Image</span>
               </div>
             </label>
             <div className="item">
-              <img src={Map} alt="" />
+              <FaMapMarkerAlt/>
               <span>Add Place</span>
             </div>
             <div className="item">
-              <img src={Friend} alt="" />
+              <ImPriceTag/>
               <span>Tag Friends</span>
             </div>
           </div>

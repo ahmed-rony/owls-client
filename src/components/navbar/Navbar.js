@@ -11,42 +11,58 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
+import { GiOwl } from 'react-icons/gi';
 
 const Navbar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="navbar">
-      <div className="left">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span>Owls</span>
-        </Link>
-        <HomeOutlinedIcon />
-        {darkMode ? (
-          <WbSunnyOutlinedIcon onClick={toggle} />
-        ) : (
-          <DarkModeOutlinedIcon onClick={toggle} />
-        )}
-        <GridViewOutlinedIcon />
-        <div className="search">
-          <SearchOutlinedIcon />
-          <input type="text" placeholder="Search..." />
+    <div className="Nav">
+      <div className="navbar">
+        <div className="left">
+          <Link to="/" className="logo" >
+            <span>Owls<GiOwl /></span>
+          </Link>
+          <div className="icons">
+            <Link className="nav-icon" to="/">
+              <HomeOutlinedIcon className=" h-icon" />
+            </Link>
+            {darkMode ? (
+              <WbSunnyOutlinedIcon className="nav-icon" onClick={toggle} />
+            ) : (
+              <DarkModeOutlinedIcon className="nav-icon" onClick={toggle} />
+            )}
+            <Link className="nav-icon" to="/">
+              <GridViewOutlinedIcon />
+            </Link>
+            <div className="search">
+              <SearchOutlinedIcon />
+              <input type="text" placeholder="Search..." />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="right">
-        <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
-        <NotificationsOutlinedIcon />
-        <div className="user">
-          <img
-            src={currentUser.profilePic}
-            alt=""
-          />
-          <span>{currentUser.name}</span>
+        <div className="right">
+          <Link className="nav-icon" to={`/profile/${currentUser.id}`}>
+            <PersonOutlinedIcon />
+          </Link>
+          <Link className="nav-icon" to={`/message`}>
+            <EmailOutlinedIcon />
+          </Link>
+          <Link className="nav-icon" to={`/notification`}>
+            <NotificationsOutlinedIcon />
+          </Link>
+          <div className="user">
+            <img
+              src={"./upload/" + currentUser.profilePic}
+              alt=""
+            />
+            <span>{currentUser.name}</span>
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 
